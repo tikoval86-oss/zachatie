@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Трудности с деторождением — Разбор и Астро-Коучинг</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22none%22 stroke=%22%23D4A84B%22 stroke-width=%225%22/><path d=%22M50 26l5 19 19 5-19 5-5 19-5-19-19-5 19-5z%22 fill=%22%23D4A84B%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     ЕДИНЫЙ ТИПОГРАФИЧЕСКИЙ СТАНДАРТ — применять на всех лендингах
+     Заголовок ........ 40px / 900
+     Подзаголовок ..... 26px / 800
+     Пункты списка .... 17px / 700
+     Название тарифа .. 18px / 800
+     Цена ............. 24px / 900
+     Описание/текст ... 16px / 400
+     ========================================================= */
+  :root {
+    --beige:     #FAF3EA;
+    --plum:      #2A0E26;
+    --gold:      #D4A84B;
+    --gold-glow: rgba(212, 168, 75, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--beige);
+    color: var(--plum);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phone-container {
+    width: 100%;
+    max-width: 450px;
+    background: var(--beige);
+    padding: 45px 24px 60px 24px;
+    text-align: center;
+  }
+
+  /* ---- ЗАГОЛОВОК ---- */
+  .brand-header { margin-bottom: 25px; display: inline-block; }
+  .main-title {
+    font-size: 40px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--plum);
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin-bottom: 4px;
+  }
+  .title-accent-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--gold);
+    margin: 8px auto 0 auto;
+    border-radius: 2px;
+  }
+
+  /* ---- ДЕКОРАТИВНАЯ ГРАФИКА ---- */
+  .atlas-art-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 32px auto;
+    width: 180px;
+    height: 180px;
+  }
+  .luxury-atlas-svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--plum);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .gold-element { stroke: var(--gold); stroke-width: 0.9; }
+  .gold-dash    { stroke: var(--gold); stroke-width: 0.8; stroke-dasharray: 3 2; }
+  .thick-gold   { stroke: var(--gold); stroke-width: 1.8; }
+
+  /* ---- ПОДЗАГОЛОВОК ---- */
+  .section-subtitle {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--plum);
+    margin-bottom: 22px;
+    text-align: left;
+  }
+
+  /* ---- СПИСОК ВОПРОСОВ ---- */
+  .questions-list { list-style: none; margin: 0 0 32px 0; }
+  .questions-list li {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--plum);
+    margin-bottom: 16px;
+    padding-left: 24px;
+    position: relative;
+    text-align: left;
+  }
+  .questions-list li::before {
+    content: "•";
+    position: absolute;
+    left: 3px;
+    top: -1px;
+    color: var(--gold);
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  /* ---- ТАРИФЫ ---- */
+  .price-section { text-align: left; }
+
+  .price-card {
+    background-color: rgba(42, 14, 38, 0.04);
+    border: 1px solid rgba(212, 168, 75, 0.3);
+    border-radius: 18px;
+    padding: 22px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .price-title { font-size: 18px; font-weight: 800; }
+  .price-value { font-size: 24px; font-weight: 900; white-space: nowrap; }
+
+  .price-desc {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  /* лид-строка + чек-лист внутри премиум-карточки */
+  .price-lead {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .check-list { list-style: none; margin: 0 0 14px 0; }
+  .check-list li {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    padding-left: 26px;
+    position: relative;
+  }
+  .check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .price-closer {
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.45;
+    margin-bottom: 20px;
+  }
+
+  .price-card:not(.premium) .price-title { color: var(--plum); }
+  .price-card:not(.premium) .price-value { color: var(--plum); }
+  .price-card:not(.premium) .price-desc  { color: rgba(42, 14, 38, 0.85); }
+
+  .price-card.premium {
+    background-color: var(--plum);
+    border: 2px solid var(--gold);
+    padding: 24px 20px 22px 20px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(42, 14, 38, 0.25);
+  }
+  .price-card.premium .price-title  { color: var(--gold); }
+  .price-card.premium .price-value  { color: var(--gold); }
+  .price-card.premium .price-lead   { color: var(--beige); }
+  .price-card.premium .check-list li{ color: rgba(250, 243, 234, 0.92); }
+  .price-card.premium .price-closer { color: rgba(250, 243, 234, 0.8); }
+
+  .badge {
+    position: absolute;
+    top: -11px;
+    right: 20px;
+    background-color: var(--gold);
+    color: var(--plum);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 2px 12px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ---- КНОПКИ ---- */
+  .card-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    padding: 14px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+  .price-card:not(.premium) .card-button {
+    display: inline-block;
+    width: auto;
+    align-self: flex-start;
+    background-color: transparent;
+    color: var(--plum);
+    border: 1px solid rgba(42, 14, 38, 0.35);
+    box-shadow: none;
+    font-size: 12px;
+    padding: 10px 22px;
+    letter-spacing: 0.6px;
+  }
+  .price-card:not(.premium) .card-button:hover,
+  .price-card:not(.premium) .card-button:active {
+    background-color: var(--plum);
+    color: var(--beige);
+    border-color: var(--plum);
+  }
+  .price-card.premium .card-button {
+    background-color: var(--gold);
+    color: var(--plum);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: premium-pulse 2.5s infinite ease-in-out;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .price-card.premium .card-button:hover,
+  .price-card.premium .card-button:active {
+    background-color: #e5bd63;
+    border-color: #e5bd63;
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 18px rgba(212, 168, 75, 0.4);
+  }
+  @keyframes premium-pulse {
+    0%   { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(212,168,75,0.3); }
+    50%  { box-shadow: 0 6px 16px rgba(0,0,0,0.2), 0 0 10px 4px rgba(212,168,75,0.5); }
+    100% { box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 0 0 0 rgba(212,168,75,0.3); }
+  }
+
+  /* ---- УЗКИЕ ЭКРАНЫ ---- */
+  @media (max-width: 380px) {
+    .main-title       { font-size: 30px; letter-spacing: 1px; }
+    .section-subtitle { font-size: 22px; }
+    .questions-list li{ font-size: 15.5px; }
+    .card-button      { font-size: 12px; padding: 12px 10px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="phone-container">
+
+    <!-- ЗАМЕНИТЬ НА ДРУГИХ ЛЕНДИНГАХ: название услуги -->
+    <div class="brand-header">
+      <h1 class="main-title">Трудности с деторождением</h1>
+      <div class="title-accent-line"></div>
+    </div>
+
+    <div class="atlas-art-container">
+      <svg class="luxury-atlas-svg" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="94" class="thick-gold" />
+        <circle cx="100" cy="100" r="90" />
+        <circle cx="100" cy="100" r="86" class="gold-dash" />
+        <path d="M100 6v4M100 190v4M10 100h4M190 100h4" class="gold-element" />
+        <circle cx="100" cy="100" r="76" class="gold-element" />
+        <path d="M100 28v144M28 100h144" />
+        <path d="M45 45l110 110M45 155l110-110" class="gold-dash" />
+        <path d="M100 140 L100 74" class="gold-element" stroke-width="1.5" />
+        <path d="M100 114 C84 112 70 100 62 82 C80 86 94 98 100 114 Z" class="gold-element" stroke-width="1.2" fill="none" />
+        <path d="M100 114 C116 112 130 100 138 82 C120 86 106 98 100 114 Z" class="gold-element" stroke-width="1.2" fill="none" />
+        <circle cx="100" cy="114" r="3.5" fill="var(--gold)" stroke="none" />
+        <path d="M100 60l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" fill="var(--gold)" stroke="none" />
+      </svg>
+    </div>
+
+    <!-- ЗАМЕНИТЬ НА ДРУГИХ ЛЕНДИНГАХ: список вопросов под услугу -->
+    <h2 class="section-subtitle">Получите ответы на вопросы</h2>
+    <ul class="questions-list">
+      <li>Будете ли вы счастливы в родительстве.</li>
+      <li>Будут ли ещё дети — или будут ли они вообще, если пока их нет.</li>
+      <li>Ближайший период, благоприятный для беременности (при наличии партнёра).</li>
+      <li>Точные периоды для ЭКО и ИКСИ на 2 года и прогноз беременности.</li>
+      <li>Состояние здоровья во время беременности и 1–2 года после родов.</li>
+      <li>Прогноз по родительству на ближайшие 2 года.</li>
+      <li>Вероятность кесарева сечения.</li>
+      <li>При наступившей беременности — расчёт каждого месяца: пройдёт гладко или с осложнениями.</li>
+      <li>Подсказки астрологии: верно ли выбран врач для ЭКО.</li>
+    </ul>
+
+    <div class="price-section">
+
+      <!-- ВНИМАНИЕ: цена и текст премиума — НЕ из вашего сообщения.
+           Цены 150/200 € поставлены по стандарту других лендингов — проверьте.
+           Текст премиума ниже — ЧЕРНОВИК, замените на ваш реальный оффер. -->
+      <div class="price-card premium">
+        <div class="badge">Рекомендую</div>
+        <div class="price-header">
+          <div class="price-title">Разбор + коуч-сессия</div>
+          <div class="price-value">200 €</div>
+        </div>
+        <div class="price-lead">Голосовой разбор 40 минут + созвон 1 час.</div>
+        <ul class="check-list">
+          <li>Снимем тревогу и страх вокруг зачатия и беременности</li>
+          <li>Дадим опору на пути ЭКО — без выгорания и паники</li>
+          <li>Поможем сохранить надежду и силы на этот период</li>
+        </ul>
+        <div class="price-closer">Чтобы пройти этот путь спокойно и с верой, а не в постоянном напряжении.</div>
+        <a href="https://t.me/astrolog_prognozi?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%20%D0%BF%D0%BE%20%D0%B4%D0%B5%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8E%20%D1%81%20%D0%BA%D0%BE%D1%83%D1%87%D0%B5%D0%BC" class="card-button">Забронировать сессию</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price-title">Голосовой разбор</div>
+          <div class="price-value">150 €</div>
+        </div>
+        <div class="price-desc">Подробный разбор по всем пунктам.<br>Без обратной связи.</div>
+        <a href="https://t.me/astrolog_prognozi?text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B3%D0%BE%D0%BB%D0%BE%D1%81%D0%BE%D0%B2%D0%BE%D0%B9%20%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%20%D0%BF%D0%BE%20%D0%B4%D0%B5%D1%82%D0%BE%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8E%20%D0%B7%D0%B0%20150%20%D0%B5%D0%B2%D1%80%D0%BE" class="card-button">Записаться</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
